@@ -1,0 +1,28 @@
+{CSSTemplate {
+	$classpath : "dashboard.controls.bookmarks.Style"
+}}
+
+{macro main()}
+/* This rule doesn't apply to dialog because of sandbox
+.removeBookmark {
+	color: black;
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 13.5px;
+	text-shadow: 0 1px 0 white;
+	filter: alpha(opacity=25);
+	-khtml-opacity: 0.25;
+	-moz-opacity: 0.25;
+	opacity: 0.25;
+}
+*/
+
+ul.linkList {
+	font-size: 16px;
+}
+
+.linkList li {
+	line-height: 25px;
+}
+{/macro}
+{/CSSTemplate}

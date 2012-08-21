@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>Open Source Dashboard</title>
+  <meta name="author" content="Fabio Crisci">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/bootstrap.responsive.css">
+  <link rel="stylesheet" href="jQuery/css/smoothness/jquery-ui-1.8.23.custom.css">
+
+  <script type="text/javascript">
+    Aria = {
+        dev : true,
+        debug : true
+    };
+
+    // This object contains some private information that I don't want to have on github, they are populated
+    // by the following script, ignored by .gitignore
+    __AT_privateSettings = {};
+  </script>
+  <script type="text/javascript" src="privateSettings.js"></script>
+  <script type="text/javascript" src="aria-templates/src/aria/bootstrap.js"></script>
+  <script type="text/javascript" src="aria-templates/src/aria/css/atskin.js"></script>
+</head>
+<body>
+
+<div id="container"></div>
+
+<script type="text/javascript">
+
+Aria.loadTemplate({
+    div : "container",
+    classpath : "dashboard.MainView",
+    moduleCtrl : {
+        classpath : "dashboard.MainController"
+    },
+    rootDim : {
+        width : {
+            min : 320,
+            scrollbar : false
+        }
+    },
+    width : {
+        min : 320
+    }
+});
+
+Aria.rootFolderPath = window.location.toString();
+aria.core.DownloadMgr.updateRootMap({
+        "aria" : {"*" : Aria.rootFolderPath + "aria-templates/src/"}
+});
+
+</script>
+
+<script type="text/javascript" src="jQuery/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="bootstrap/bootstrap-modal.js"></script>
+<script type="text/javascript" src="jQuery/js/jquery-ui-1.8.23.custom.min.js"></script>
+<script type="text/javascript" src="bootstrap/bootstrap-twipsy.js"></script>
+<script type="text/javascript" src="bootstrap/bootstrap-popover.js"></script>
+
+</body>
+</html>

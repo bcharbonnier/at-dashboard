@@ -1,0 +1,6 @@
+# Vim
+
+.*
+!.gitignore
+*~
+privateSettings.js

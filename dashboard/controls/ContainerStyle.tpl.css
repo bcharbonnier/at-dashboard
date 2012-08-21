@@ -1,0 +1,30 @@
+{CSSTemplate {
+	$classpath : "dashboard.controls.ContainerStyle"
+}}
+
+{macro main()}
+.draggable {
+	margin-bottom : 25px;
+}
+
+.draggable h4 {
+	cursor : move;
+	line-height : 30px;
+	padding : 2px 4px 0 25px;
+}
+
+.draggable .ui-icon {
+	display : inline-block;
+	float : right;
+	margin-right : 4px;
+	margin-top : 5px;
+}
+
+.drop-over {
+	background-color : #F2F2F2;
+	border : 5px dashed #515151;
+	margin : -5px;
+}
+{/macro}
+
+{/CSSTemplate}

@@ -1,0 +1,21 @@
+{CSSTemplate {
+	$classpath : "dashboard.MainStyle"
+}}
+
+{macro main()}
+.hero-unit dt {
+	font-size: 160%;
+	line-height: 200%;
+}
+.hero-unit dd {
+	font-size: 140%;
+}
+.hero-unit dl {
+	margin-left: 50px;
+}
+.controlContainer {
+	float: left; 
+	margin : 20px;
+}
+{/macro}
+{/CSSTemplate}
