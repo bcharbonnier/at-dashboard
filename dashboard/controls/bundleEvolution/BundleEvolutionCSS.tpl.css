@@ -1,0 +1,13 @@
+{CSSTemplate {
+	$classpath : "dashboard.controls.bundleEvolution.BundleEvolutionCSS"
+}}
+
+	{macro main()}
+		div.chart-container {
+			width : 100%;
+			height : 400px;
+			overflow : auto;
+		}
+	{/macro}
+
+{/CSSTemplate}

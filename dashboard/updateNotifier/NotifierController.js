@@ -7,6 +7,9 @@ Aria.classDefinition({
 		this.$ModuleCtrl.constructor.apply(this, arguments);
 
 		this.latestUpdates = [{
+            when : "21/08/2012",
+            what : "New control available! Check the size evolution of Aria Templates bundles."
+        },{
 			when : "30/01/2012",
 			what : "New control available! Pin-up images from the 50's."
 		},{
