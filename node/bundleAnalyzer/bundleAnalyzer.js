@@ -3,33 +3,42 @@ var fs = require('fs');
 var getStats = function () {
 	var output = {
 		versions : [],
-		bundleNames : null,
+		bundleNames : [],
         data : [],
-        bundles : []
+        packages : [],
+        evolution : {}
 	};
-	//var baseFolder = "D:/ApacheHtdocs/www/aria-templates-old/";
     var baseFolder = "O:/aria-templates-old/";
 	var baseFolderStats = fs.readdirSync(baseFolder);
 	var versions = extractVersions(baseFolderStats), version, bundles;
 	for (var i = 0, versionsNb = versions.length; i < versionsNb; i++) {
 		version = versions[i];
 		bundles = getVersionStats(baseFolder + version + '/aria/');
-		output.bundles.push({
+		output.packages.push({
 			name : version,
 			bundles : bundles
 		});
+
+        for (var bundleName in bundles) {
+            if (bundles.hasOwnProperty(bundleName)) {
+                if (!output.evolution[bundleName]) {
+                    output.evolution[bundleName] = {};
+                    output.bundleNames.push(bundleName);
+                }
+
+                output.evolution[bundleName][version] = bundles[bundleName];
+            }
+        }
 	}
-    var bundleNames = extractBundleNames(output.bundles);
 
     for (i = 0; i < versionsNb; i++) {
         version = versions[i];
         output.data.push({
             name : version,
-            data : extractDataFromBundles(output.bundles[i].bundles, bundleNames)
+            data : extractDataFromBundles(output.packages[i].bundles, output.bundleNames)
         });
     }
 
-	output.bundleNames = bundleNames;
     output.versions = versions;
 	return output;
 
@@ -113,19 +122,6 @@ var removeMD5 = function (filename) {
 	var parts = filename.split('_');
 	parts.pop();
 	return parts.join('_');
-};
-
-var extractBundleNames = function (versions) {
-	var bundleNames = [], bundles;
-	for (var i = 0, versionsNb = versions.length; i < versionsNb; i++) {
-		bundles = versions[i].bundles;
-		for (var name in bundles) {
-			if (bundles.hasOwnProperty(name) && bundleNames.indexOf(name) == -1) {
-				bundleNames.push(name);
-			}
-		}
-	}
-	return bundleNames;
 };
 
 var extractDataFromBundles = function (bundles, reference) {

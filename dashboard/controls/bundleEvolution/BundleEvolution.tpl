@@ -34,6 +34,27 @@ Bundle Evolution
         <p><strong>An error occurred while downloading the bundle's measures.</strong></p>
     </div>
 {else /}
+    {@aria:Select {
+        label : "Bundle",
+        options : getBundleOptions(),
+        value : data.stats.bundleNames[0],
+        bind : {
+            value : {
+                inside : data,
+                to : "view:selectedBundle"
+            }
+        }
+    }/}
+
+    {section {
+        bindRefreshTo : [{
+            inside : data,
+            to : "view:selectedBundle"
+        }],
+        id : "bundleEvolution",
+        macro : "bundle"
+    }/}
+
     <table>
         <thead>
             <tr>
@@ -54,8 +75,11 @@ Bundle Evolution
             {/foreach}
         </tbody>
     </table>
-    <div id="bundleEvolutionContainer"></div>
+
 {/if}
 {/macro}
 
+{macro bundle()}
+<div id="bundleEvolutionContainer"></div>
+{/macro}
 {/Template}
