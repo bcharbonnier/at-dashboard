@@ -27,6 +27,15 @@
 			<td>Release Master</td>
 			<td>${data.master}</td>
 		</tr>
+
+		<tr>
+            <td>Support candidates</td>
+            <td>
+                {foreach person in data.candidates}
+                    ${person.name} : ${person.weeks}<br>
+                {/foreach}
+            </td>
+        </tr>
 	</tbody>
 </table>
 {/macro}
