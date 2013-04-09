@@ -32,7 +32,16 @@
             <td>Support candidates</td>
             <td>
                 {foreach person in data.candidates}
-                    ${person.name} : ${person.weeks}<br>
+                    ${person.name} : ${person.weeks} weeks<br>
+                {/foreach}
+            </td>
+        </tr>
+
+        <tr>
+            <td>Alternative Masters</td>
+            <td>
+                {foreach person inArray data.couple}
+                    ${person}<br>
                 {/foreach}
             </td>
         </tr>

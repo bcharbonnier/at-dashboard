@@ -11,13 +11,10 @@ Aria.classDefinition({
             var timeReference = new Date(2011, 10, 21);
             var initialSprint = 19;
             var masterCycle = __AT_privateSettings.developers;
-            var masterOnInitialSprint = 4;
-
-            var today = new Date();
+            var masterOnInitialSprint = __AT_privateSettings.initialMasterCounter;
             var utilsDate = aria.utils.Date;
 
-            var daysPassed = utilsDate.dayDifference(timeReference, today);
-            var sprintsPassed = Math.floor(daysPassed / 21);
+            var sprintsPassed = this.sprintsPassed(timeReference);
             var sprintBegin = new Date(timeReference.getTime());
             sprintBegin.setDate(sprintBegin.getDate() + sprintsPassed * 21);
             var sprintEnd = new Date(sprintBegin.getTime());
@@ -36,7 +33,8 @@ Aria.classDefinition({
                 freeze : utilsDate.format(codeFreeze, "MMM dd"),
                 master : masterCycle[masterPassed],
                 week : weekEnd,
-                candidates : this.whosOnIssues()
+                candidates : this.whosOnIssues(),
+                couple : this.masterCouple()
             };
 
             this.$callback(cb);
@@ -82,6 +80,22 @@ Aria.classDefinition({
             }
 
             return withInfo;
+        },
+
+        sprintsPassed : function (since) {
+            var today = new Date();
+            var daysPassed = aria.utils.Date.dayDifference(since, today);
+            return Math.floor(daysPassed / 21);
+        },
+
+        masterCouple : function () {
+            var couples = __AT_privateSettings.couples;
+            var couplesRefereceTime = __AT_privateSettings.couplesRefereceTime;
+            var sixWeekCounter = Math.floor(this.sprintsPassed(couplesRefereceTime) / __AT_privateSettings.couplesWeeksStep) % couples.length;
+
+            var candidates = couples[sixWeekCounter];
+
+            return candidates;
         }
     }
 });
